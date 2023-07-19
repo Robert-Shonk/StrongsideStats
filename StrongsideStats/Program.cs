@@ -1,7 +1,14 @@
+using StrongsideStats.Services.Interfaces;
+using StrongsideStats.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient();
+
+// my services
+builder.Services.AddSingleton<IRiotAPIService, RiotAPIService>();
 
 var app = builder.Build();
 
