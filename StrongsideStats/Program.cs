@@ -1,7 +1,12 @@
 using StrongsideStats.Services.Interfaces;
 using StrongsideStats.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using StrongsideStats.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<StrongsideStatsContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("StrongsideStatsContext") ?? throw new InvalidOperationException("Connection string 'StrongsideStatsContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

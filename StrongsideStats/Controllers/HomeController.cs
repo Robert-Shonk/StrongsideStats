@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StrongsideStats.Models;
+using StrongsideStats.Models.DTOs;
+using StrongsideStats.Services.Interfaces;
 using System.Diagnostics;
 
 namespace StrongsideStats.Controllers
@@ -7,10 +9,12 @@ namespace StrongsideStats.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRiotAPIService _riotAPIService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRiotAPIService riotAPIService)
         {
             _logger = logger;
+            _riotAPIService = riotAPIService;
         }
 
         public IActionResult Index()
@@ -18,10 +22,11 @@ namespace StrongsideStats.Controllers
             return View();
         }
 
-        public IActionResult Summoner(string summonerName)
+        public async Task<IActionResult> Summoner(string summonerName)
         {
-            ViewData["summonerName"] = summonerName;
-            return View();
+            SummonerDTO? summoner = await _riotAPIService.GetSummonerAsync(summonerName);
+
+            return View(summoner);
         }
 
         public IActionResult Privacy()
