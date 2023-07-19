@@ -18,6 +18,12 @@ namespace StrongsideStats.Controllers
             return View();
         }
 
+        public IActionResult Summoner(string summonerName)
+        {
+            ViewData["summonerName"] = summonerName;
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
