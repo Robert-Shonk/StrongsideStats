@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongsideStats", "StrongsideStats\StrongsideStats.csproj", "{617FF6E5-3B0E-45DB-9A27-ED5B9D00A051}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{617FF6E5-3B0E-45DB-9A27-ED5B9D00A051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{617FF6E5-3B0E-45DB-9A27-ED5B9D00A051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{617FF6E5-3B0E-45DB-9A27-ED5B9D00A051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{617FF6E5-3B0E-45DB-9A27-ED5B9D00A051}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C059A2BA-9B28-4E49-988F-2B9C8E4C3A85}
+	EndGlobalSection
+EndGlobal
