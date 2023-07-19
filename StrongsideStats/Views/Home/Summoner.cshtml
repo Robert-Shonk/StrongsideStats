@@ -2,5 +2,11 @@
 @{
     ViewData["Title"] = "Summoner stats";
 }
-
-hello @Model.name
+@if (Model == null)
+{
+    <p>Summoner not found.</p>
+}
+else
+{
+    <p>hello @Model.name</p>
+}
