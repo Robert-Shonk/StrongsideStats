@@ -1,3 +1,7 @@
-@StrongsideStats_HostAddress = http://localhost:5123
+@StrongsideStats_HostAddress = https://localhost:7108
 
 
+@id=1005
+DELETE {{StrongsideStats_HostAddress}}/summoner/{{id}}
+
+###

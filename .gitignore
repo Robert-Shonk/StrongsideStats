@@ -3,6 +3,9 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+# My ignores
+StrongsideStats/Services/RiotApiUrls.cs
+
 # dotenv files
 .env
 
