@@ -20,6 +20,7 @@ namespace StrongsideStats.Controllers
         public async Task<IActionResult> Get(string gameName, string tagLine)
         {
             var summoner = await _db.GetSummonerByNameAndTagAsync(gameName, tagLine);
+
             if (summoner == null)
             {
                 return NotFound();
