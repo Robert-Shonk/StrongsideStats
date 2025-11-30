@@ -22,7 +22,7 @@ namespace StrongsideStats.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("Home page");
+            return File("index.html", "text/html");
         }
 
         [HttpGet("/summoner")]
@@ -65,7 +65,7 @@ namespace StrongsideStats.Controllers
                 }
             }
 
-            return Ok(summonerDto);
+            return File("summoner.html", "text/html");
         }
 
         // this will only be for testing purposes.
