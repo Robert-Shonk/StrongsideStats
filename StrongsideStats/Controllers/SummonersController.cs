@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StrongsideStats.Data;
+using StrongsideStats.Data.DTOs;
 using StrongsideStats.Services.Interfaces;
 
 namespace StrongsideStats.Controllers
@@ -27,6 +28,13 @@ namespace StrongsideStats.Controllers
             }
 
             return Ok(summoner);
+        }
+
+        [HttpPost("update-summoner")]
+        public async Task<IActionResult> UpdateSummoner([FromBody] SummonerDTO summonerDto)
+        {
+            Console.WriteLine(summonerDto.GameName);
+            return Ok("20000");
         }
     }
 }

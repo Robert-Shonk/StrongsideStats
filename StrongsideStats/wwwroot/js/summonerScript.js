@@ -1,39 +1,52 @@
-﻿async function getSummoner() {
-    const params = new URLSearchParams(document.location.search);
+﻿const baseUrl = 'https://localhost:7108/api/summoners';
 
+const params = new URLSearchParams(window.location.search);
+
+async function fetchSummoner() {
     try {
-        const response = await fetch(`https://localhost:7108/api/summoners/by-riot-id?gameName=${params.get("gameName")}&tagLine=${params.get("tagLine")}`);
-        if (response.status == 200) {
-            const data = await response.json();
-            createPlayerInfo(data, true);
+        const response = await fetch(`${baseUrl}/by-riot-id?gameName=${params.get("gameName")}&tagLine=${params.get("tagLine")}`);
+        if (response.status == 404) {
+            console.log("handle 404");
+            // render page for no summoner found in db.
         }
-        else if(response.status == 404) {
-            createPlayerInfo({}, false);
+        else if (response.status == 200) {
+            // render page for success summoner found.
+            console.log("handle 200 success");
         }
         else if (!response.ok) {
-            throw new Error('Could not fetch resource');
+            throw new Error(`Response status: ${response.status}`);
         }
     }
     catch (error) {
-        console.error('Error fetching data:', error);
+        console.error(error.message);
     }
 }
 
-function createPlayerInfo(data, success) {
-    const info = document.createElement("div");
+async function postUpdateSummoner() {
+    try {
+        const response = await fetch(`${baseUrl}/update-summoner`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ gameName: params.get("gameName"), tagLine: params.get("tagLine") })
+        });
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
 
-    if (success) {
-        const queueType = document.createElement("div");
-        queueType.textContent = data["leaguesDTO"][0]["queueType"];
-
-        info.append(queueType);
+        return true;
     }
-    else {
-        info.textContent = "Not found";
+    catch (error) {
+        console.error('Error posting data:', error);
     }
-
-    const container = document.getElementById("container");
-    container.append(info);
 }
 
-getSummoner();
+const updateButton = document.getElementById("updateButton");
+updateButton.addEventListener('click', async () => {
+    const postRequest = await postUpdateSummoner();
+
+    if (postRequest) {
+        fetchSummoner();
+    }
+});
